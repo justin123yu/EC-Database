@@ -4,6 +4,7 @@ const ADD_PET = 'INSERT INTO \"Pets\" (\"Name\", \"Type\", \"Age\", \"Breed\") V
 const GET_PETS = "SELECT * FROM \"Pets\"";
 const UPDATE_PETS = "UPDATE \"Pets\" SET \"Name\" = $1, \"Type\" = $2, \"Age\" = $3, \"Breed\" = $4 WHERE \"Pet_id\"  = $5";
 const DELETE_PETS = "DELETE FROM \"Pets\" WHERE \"Pet_id\" = $1";
+const GET_PET = "SELECT * FROM \"Pets\" WHERE \"Pet_id\" = $1";
 
 const create_pet =  (Name, Type, Age, Breed) => { db.none(ADD_PET, [Name, Type, Age, Breed]);
 }
@@ -19,10 +20,14 @@ const update_pets = (Name, Type, Age, Breed, Pet_id) => {
 const delete_pets = (Pet_id) => {
     return db.none(DELETE_PETS, [Pet_id]);
 }
+const get_pet = (Pet_id) => {
+    return db.any(GET_PET, [Pet_id]);
+}
 
 module.exports = {
     create_pet,
     get_pets,
     update_pets,
-    delete_pets
+    delete_pets,
+    get_pet
 }

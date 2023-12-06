@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {Link} from "react-router-dom";
 export default function Adopter() {
     const [data, setData] = useState([]);
     useEffect(() => {
@@ -13,13 +14,22 @@ export default function Adopter() {
     
     }
     return (
-        <>
+        <>  
             <h1>Adopter</h1>
-            <ul>
+            <Link to="/adoptForm" className="btn btn-primary">Add Adopter</Link>
+            <br></br>
+            <br></br>
+            <div className="card-group">
                 {data.map((item) => (
-                    <li key={item.Adopter_id}>{item.Name +" "+item.Phone}</li>
+                    <div className="card" key={item.Adopter_id}>
+                        <div className="card-body">
+                            <h5 className="card-title">{item.Name}</h5>
+                            <p className="card-text">{item.Phone}</p>
+                            <Link to={`/adopter/${item.Adopter_id}`} className="btn btn-primary">Edit</Link>
+                        </div>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </>
     )
 }

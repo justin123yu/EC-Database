@@ -7,6 +7,11 @@ router.get("/", async (_req, res) => {
     res.json(staff);
 });
 
+router.get("/:id", async (req, res) => {
+    let staff = await Staff.get_staff_id(req.params.id);
+    res.json(staff);
+}); 
+
 router.post("/", async (req, res) => {
     let {Name, Role} = req.body;
     await Staff.create_staff(Name, Role);

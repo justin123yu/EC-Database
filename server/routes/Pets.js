@@ -7,6 +7,11 @@ router.get("/", async (req, res) => {
    res.json(pets);
 });
 
+router.get("/:id", async (req, res) => {
+    let pets = await Pets.get_pet(req.params.id);
+    res.json(pets);
+});
+
 router.post("/", async (req, res) => {
     let {Name, Type, Age, Breed} = req.body;
     Pets.create_pet(Name, Type, Age, Breed);

@@ -7,6 +7,11 @@ router.get("/", async (_req, res) => {
     res.json(adopter);
 });
 
+router.get("/:id", async (req, res) => {
+    let adopter = await Adopter.get_specific_adopter(req.params.id);
+    res.json(adopter);
+});
+
 router.post("/", async (req, res) => {
     let {Name, Phone} = req.body;
     await  Adopter.create_adopter(Name, Phone);
