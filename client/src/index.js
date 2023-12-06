@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import CssBaseline from '@mui/material/CssBaseline'
 import '@fontsource/roboto'
-import './styles/index.css'
+import { BrowserRouter } from 'react-router-dom';
+import Navbar from './pages/Navbar';
 
 ReactDOM.render(
-  <React.StrictMode>
-      <CssBaseline />
+  <BrowserRouter>
+  <CssBaseline />
+      <Navbar />
       <App />
-  </React.StrictMode>,
+  </BrowserRouter>,
   document.getElementById('root'),
 )

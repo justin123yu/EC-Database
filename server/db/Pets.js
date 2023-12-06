@@ -5,7 +5,7 @@ const GET_PETS = "SELECT * FROM \"Pets\"";
 const UPDATE_PETS = "UPDATE \"Pets\" SET \"Name\" = $1, \"Type\" = $2, \"Age\" = $3, \"Breed\" = $4 WHERE \"Pet_id\"  = $5";
 const DELETE_PETS = "DELETE FROM \"Pets\" WHERE \"Pet_id\" = $1";
 
-const create_pet =  (Name, Type, Age, Breed) => { db.one(ADD_PET, [Name, Type, Age, Breed]);
+const create_pet =  (Name, Type, Age, Breed) => { db.none(ADD_PET, [Name, Type, Age, Breed]);
 }
 
 const get_pets =  (_) => {

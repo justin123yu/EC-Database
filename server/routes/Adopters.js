@@ -2,26 +2,26 @@ const express = require("express");
 const router = express.Router();
 const Adopter = require("../db/Adopters");
 
-router.get("/", (_req, res) => {
-    let adopter = Adopter.get_adopter();
+router.get("/", async (_req, res) => {
+    let adopter = await Adopter.get_adopters();
     res.json(adopter);
 });
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
     let {Name, Phone} = req.body;
-    let adopter = Adopter.create_adopter(Name, Phone);
-    res.json(adopter);
+    await  Adopter.create_adopter(Name, Phone);
+    res.json({message: "Adopter created"});
 });
 
-router.delete("/:id", (req, res) => {
-    let adopter = Adopter.delete_adopter(req.params.id);
-    res.json(adopter);
+router.delete("/:id", async (req, res) => {
+    Adopter.delete_adopter(req.params.id);
+    res.json({message: "Adopter deleted"});
 });
 
-router.patch("/:id", (req, res) => {
+router.patch("/:id", async (req, res) => {
     let {Name, Phone} = req.body;
-    let adopter = Adopter.update_adopter(Name, Phone, req.params.id);
-    res.json(adopter);
+    await Adopter.update_adopter(Name, Phone, req.params.id);
+    res.json({message: "Adopter updated"});
 });
 
 module.exports = router;
